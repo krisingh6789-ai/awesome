@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "topics": [{
+    "id": "user-federalism",
+    "subject": "Polity",
+    "stage": "Prelims",
+    "title": "Federalism: your personal notes",
+    "hindi": "संघवाद: आपके व्यक्तिगत नोट्स",
+    "intro": "Replace this text with your source-backed explanation.",
+    "facts": ["Replace with a verified fact."],
+    "status": "Not started",
+    "source": "User-imported — specify source and page"
+  }],
+  "questions": [{
+    "id": "user-q-001",
+    "subject": "Polity",
+    "topic": "user-federalism",
+    "text": "Which Schedule contains the Union, State and Concurrent Lists?",
+    "options": ["Fifth Schedule", "Sixth Schedule", "Seventh Schedule", "Eighth Schedule"],
+    "answer": 2,
+    "explanation": "The Seventh Schedule contains the legislative lists. The Fifth and Sixth deal with administration of specified areas; the Eighth lists languages.",
+    "difficulty": "Easy",
+    "kind": "User-imported",
+    "source": "Constitution of India, Seventh Schedule — original practice question, not a PYQ",
+    "year": null,
+    "tags": ["Federalism", "Prelims"]
+  }],
+  "cards": [{
+    "id": "user-card-001",
+    "topic": "user-federalism",
+    "front": "Which Schedule contains the legislative lists?",
+    "back": "The Seventh Schedule. सातवीं अनुसूची।"
+  }],
+  "notes": [{
+    "title": "Federalism revision",
+    "body": "Add your own source-backed notes here.",
+    "type": "Revision",
+    "tags": "Polity, Federalism"
+  }],
+  "affairs": []
+}
