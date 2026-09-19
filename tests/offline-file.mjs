@@ -71,11 +71,11 @@ await noStorage.addInitScript(() => {
 const fallback = await noStorage.newPage();
 await fallback.goto(url);
 await fallback
-	.getByRole("heading", { name: "Your starter study library" })
+	.getByRole("heading", { name: "Your offline study library" })
 	.waitFor();
-assert.equal(await fallback.locator(".offline-question").count(), 15);
+assert.equal(await fallback.locator(".offline-question").count(), 75);
 console.log(
-	"PASS: browser storage unavailable → readable 8-lesson / 15-question fallback.",
+	"PASS: browser storage unavailable → readable 105-lesson / 75-question fallback.",
 );
 const noScripts = await browser.newContext({
 	offline: true,
@@ -84,9 +84,9 @@ const noScripts = await browser.newContext({
 const staticPage = await noScripts.newPage();
 await staticPage.goto(url);
 await staticPage
-	.getByRole("heading", { name: "Your UPSC starter library" })
+	.getByRole("heading", { name: "Your UPSC offline library" })
 	.waitFor();
-assert.equal(await staticPage.locator(".offline-question").count(), 15);
+assert.equal(await staticPage.locator(".offline-question").count(), 75);
 console.log(
 	"PASS: JavaScript disabled → self-contained reading library remains usable.",
 );

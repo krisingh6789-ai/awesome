@@ -214,3 +214,38 @@ The connected integration can push code but received **403 Resource not accessib
 Expected site address after successful activation: `https://krisingh6789-ai.github.io/awesome/`. Do not assume this URL is live before Pages has been enabled. No switch or push to main/gh-pages is needed. Only the app build and starter offline download are served; personal data remains in the user's browser.
 
 `npm run build` still produces a root-path local preview by default. `npm run build:pages` changes `dist/` to a project-path build; rerun the normal build before testing the root preview.
+
+## Polity–Economy release: user-supplied contents map (19 September 2026)
+
+Open **Study → Open Polity & Economy**, or **Syllabus tracker**. This release adds the user's visible book contents, not a claim to have acquired the underlying textbook chapters or the full official UPSC syllabus.
+
+### Scope delivered
+
+- **80 Polity chapters**, organised in the **11 printed parts**.
+- **515 printed Polity subheadings/reference lines**, preserving chapter-relative page labels and cross-page continuations.
+- **19 Economy entries** with printed page ranges. The 18th entry is the book's practice-set resource and the 19th its answer resource; those actual pages were not supplied.
+- **26 supplementary records**: seven front-matter entries, ten appendices and nine additional-reading entries.
+- **97 original AI-generated core lessons** (80 Polity + 17 Economy including an original glossary), with concept explanations, facts, exam traps, original Mains prompts and reference routes. These contain approximately 13,779 English words before the expanded guides.
+- **Eight expanded guides**: Fundamental Rights, Centre–State Relations, Parliament, Supreme Court, National Income Accounting, Money and Banking, Government Budgeting, International Economics. They add worked reasoning, comparison tables, case applications and linked chapters.
+- **60 new original AI-generated MCQs**, correctly distinguished from official PYQs, plus **97 new recall cards**. With the original starter set, the default library has 105 lessons, 75 questions and 105 cards.
+- Paginated chapter navigation, chapter/subtopic search, source checklists, per-item learning statuses, linked personal notes, chapter bookmarks, chapter-specific practice, Mains prompts, flashcards, revision-sheet export, content export and a full coverage-register export.
+
+### Important coverage boundaries
+
+All visible numbered units have been mapped, but **mapping is not detailed teaching completion**. The entire text of each book chapter was not supplied. Every printed subheading is retained even where detailed standalone treatment remains pending. Core lessons are concise original study material; they are not substituted textbook chapters or a declaration of comprehensive advanced mastery. Primary-source review is pending and shown prominently. Portal links are verification routes, not fabricated page-level citations.
+
+The new pack has Hindi chapter titles and English explanations. **Complete Hindi translations of all new chapters remain pending.** The eight pre-existing starter lessons retain their bilingual explanations. No authentic source PYQ, textbook practice-set question or answer key is invented to fill absent pages.
+
+The book indicates an older sixth edition and includes PYQ appendices through 2019. Time-sensitive law, case law, institutional composition, government programmes, monetary-policy settings, national-accounts series, budget figures and rankings must be checked against current primary materials. No current rank, policy rate or officeholder list is fabricated.
+
+The cropped chapter-end range for Subordinate Courts is explicitly flagged; the visible Notes and References line at 36.10 is retained without guessing the cropped range. The Economy page gap between Agriculture and Industry is retained. Handwritten reading ticks/counts, article annotations and marginal notes are not treated as verified facts or app activity. Original photograph files, personal handwriting and image backgrounds are not published.
+
+### Data, maintenance and tests
+
+`src/content/polity-outline.txt` and `economy-outline.txt` hold the transcribed scope. `polity-lessons.txt` and `economy-lessons.txt` hold original core explanations. `supplementary.json` retains reference-only entries. `scripts/compile-curriculum.mjs` validates counts and compiles `curriculum.json` plus **CONTENT_COVERAGE.md**. `questions-pack.js` and `deep-dives.js` contain original practice and expanded explanations; `pack.js` performs the additive transactional installation.
+
+No schema reset is performed. The pack revision marker is `settings['pack:polity-economy']`; source-checklist progress is stored as `settings['coverage:<chapterId>']` with independent `marks`. Existing topic learning statuses, card steps/due dates and notes survive a pack reinstall. Book reference entries are not marked as finished merely because they exist. A user-marked chapter completion is separate from editorial coverage/review state. Old backups receive missing pack content after restoration, while existing local data remains preserved under the normal restore semantics.
+
+`tests/curriculum.mjs` verifies all numbered units, source-line counts, reference entries, lesson and question integrity, pagination, checklist persistence, linked notes and Mains prompts, budget question checking, upgrade preservation of progress/review scheduling, offline reload and mobile overflow. Root-app workflows, binary-file backup/restore, single-file offline reading fallback and `/awesome/` deployment-path tests are also rerun for this release.
+
+The portable HTML embeds the new lessons and includes them in the script-disabled reading library. It remains an HTML file, not an Android APK. Local-file execution/storage restrictions and the GitHub Pages enablement requirement still apply.

@@ -21,7 +21,7 @@ await page.getByRole("button", { name: "Next", exact: true }).click();
 await page.getByRole("button", { name: "B Fundamental Rights" }).click();
 await page.getByRole("button", { name: "Finish & analyze" }).click();
 await page.getByRole("heading", { name: "A step forward." }).waitFor();
-await page.getByText("1.33 / 30", { exact: true }).waitFor();
+await page.getByText("1.33 / 150", { exact: true }).waitFor();
 await page.getByRole("button", { name: "Back to your workspace" }).click();
 await nav("Writing");
 await page.getByRole("button", { name: "New answer" }).click();
@@ -36,39 +36,35 @@ await page
 	.getByRole("button", { name: /Why accountability matters/ })
 	.waitFor();
 await nav("Resources");
-await page
-	.locator(".import-area input")
-	.setInputFiles({
-		name: "offline.txt",
-		mimeType: "text/plain",
-		buffer: Buffer.from("Offline file content"),
-	});
+await page.locator(".import-area input").setInputFiles({
+	name: "offline.txt",
+	mimeType: "text/plain",
+	buffer: Buffer.from("Offline file content"),
+});
 await page.getByRole("heading", { name: "offline.txt" }).first().waitFor();
 await page.getByRole("button", { name: "Import", exact: true }).click();
-await page
-	.locator("input[type=file]")
-	.setInputFiles({
-		name: "pack.json",
-		mimeType: "application/json",
-		buffer: Buffer.from(
-			JSON.stringify({
-				version: 1,
-				questions: [
-					{
-						id: "test-import",
-						text: "Imported test question?",
-						options: ["one", "two", "three", "four"],
-						answer: 0,
-						subject: "Polity",
-						topic: "rights",
-						kind: "User-imported",
-						explanation: "One is correct.",
-						source: "User test pack",
-					},
-				],
-			}),
-		),
-	});
+await page.locator("input[type=file]").setInputFiles({
+	name: "pack.json",
+	mimeType: "application/json",
+	buffer: Buffer.from(
+		JSON.stringify({
+			version: 1,
+			questions: [
+				{
+					id: "test-import",
+					text: "Imported test question?",
+					options: ["one", "two", "three", "four"],
+					answer: 0,
+					subject: "Polity",
+					topic: "rights",
+					kind: "User-imported",
+					explanation: "One is correct.",
+					source: "User test pack",
+				},
+			],
+		}),
+	),
+});
 await page.getByText("1 content items imported").waitFor();
 await page.getByRole("button", { name: "Search anything…" }).click();
 await page
@@ -92,13 +88,11 @@ if (
 	!backup.data.resources[0].base64
 )
 	throw Error("Backup missing data");
-await page
-	.locator('label:has-text("Restore") input')
-	.setInputFiles({
-		name: "backup.json",
-		mimeType: "application/json",
-		buffer: Buffer.from(JSON.stringify(backup)),
-	});
+await page.locator('label:has-text("Restore") input').setInputFiles({
+	name: "backup.json",
+	mimeType: "application/json",
+	buffer: Buffer.from(JSON.stringify(backup)),
+});
 await page.getByText("Backup restored", { exact: true }).waitFor();
 await nav("Analytics");
 await page.getByText("1 mock tests submitted", { exact: false }).waitFor();

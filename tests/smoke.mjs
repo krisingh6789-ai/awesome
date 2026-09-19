@@ -43,7 +43,7 @@ await page
 await page.getByRole("button", { name: "Review due cards" }).click();
 await page.locator(".flashcard").click();
 await page.getByRole("button", { name: "Remembered" }).click();
-await page.getByRole("heading", { name: "Card 2 of 8" }).waitFor();
+await page.getByRole("heading", { name: "Card 2 of 105" }).waitFor();
 await page.getByRole("button", { name: "Close dialog" }).click();
 for (const name of ["Study", "Practice", "Writing", "Analytics"]) {
 	await page

@@ -1,3 +1,10 @@
+import Curriculum, { ExpandedLesson } from "./Curriculum.jsx";
+import {
+	installCurriculum,
+	curriculum,
+	packTopics,
+	packQuestions,
+} from "./content/pack.js";
 import { lessonHindi } from "./hindi";
 import "@fontsource-variable/noto-sans-devanagari";
 import "@fontsource-variable/dm-sans";
@@ -102,6 +109,7 @@ function App() {
 		[modal, setModal] = useState(null),
 		[toast, setToast] = useState(""),
 		[search, setSearch] = useState(""),
+		[revisionLimit, setRevisionLimit] = useState(24),
 		[filter, setFilter] = useState("All"),
 		[online, setOnline] = useState(navigator.onLine),
 		[menu, setMenu] = useState(false),
@@ -129,8 +137,10 @@ function App() {
 				(order.indexOf(a.id) < 0 ? 99 : order.indexOf(a.id)) -
 				(order.indexOf(b.id) < 0 ? 99 : order.indexOf(b.id)),
 		);
-		o.questions.sort((a, b) =>
-			a.id.localeCompare(b.id, undefined, { numeric: true }),
+		o.questions.sort(
+			(a, b) =>
+				Number(Boolean(a.packId)) - Number(Boolean(b.packId)) ||
+				a.id.localeCompare(b.id, undefined, { numeric: true }),
 		);
 		setData(o);
 		setReady(true);
@@ -204,21 +214,26 @@ function App() {
 		return (
 			<main className="fallback-reader">
 				<span className="eyebrow">ABHYAS · OFFLINE READING MODE</span>
-				<h1>Your starter study library</h1>
+				<h1>Your offline study library</h1>
 				<div className="notice">
 					This browser cannot access local storage for this file. You can still
-					read every starter lesson and question below. Progress, notes and
-					bookmarks cannot be saved in this mode. For the interactive workspace,
-					download the file and open it directly in a browser that supports
-					local-file IndexedDB.
+					read the included core lessons and questions below. Progress, notes
+					and bookmarks cannot be saved in this mode. For the interactive
+					workspace, download the file and open it directly in a browser that
+					supports local-file IndexedDB.
 				</div>
 				<details>
 					<summary>Storage diagnostic</summary>
 					<p>{startupError}</p>
 				</details>
-				{starterTopics.map((t) => (
+				{[...starterTopics, ...packTopics].map((t) => (
 					<section className="panel roomy" key={t.id}>
-						<span className="badge">STARTER LESSON · {t.subject}</span>
+						<span className="badge">
+							{t.packId
+								? "ORIGINAL CORE LESSON · REVIEW PENDING"
+								: "STARTER LESSON"}{" "}
+							· {t.subject}
+						</span>
 						<h2>
 							{t.title} · {t.hindi}
 						</h2>
@@ -232,7 +247,7 @@ function App() {
 								</li>
 							))}
 						</ul>
-						{starterQuestions
+						{[...starterQuestions, ...packQuestions]
 							.filter((q) => q.topic === t.id)
 							.map((q) => (
 								<details className="offline-question" key={q.id}>
@@ -306,7 +321,22 @@ function App() {
 		}
 		refresh();
 	};
-	const openTopic = (t) => setModal({ type: "topic", topic: t });
+	const openTopic = (t) => {
+		if (t) setModal({ type: "topic", topic: t });
+	};
+	const linkedNote = (chapter, item) =>
+		setModal({
+			type: "note",
+			note: {
+				title: `${chapter.title} — ${item.title}`,
+				body: "",
+				type: "Topic",
+				topic: chapter.id,
+				syllabusItem: item.id,
+				tags: chapter.subject,
+				date: day(),
+			},
+		});
 	const startQuiz = (mode = "Practice", subject = "All", mistakes = false) => {
 		let qs = data.questions.filter(
 			(q) =>
@@ -835,6 +865,24 @@ function App() {
 									<ArrowUpRight size={16} />
 								</button>,
 							)}
+							<section className="bottom-band curriculum-invite">
+								<div>
+									<span className="subject-icon">
+										<Landmark size={21} />
+									</span>
+									<div>
+										<strong>Your Polity & Economy syllabus is mapped</strong>
+										<p>
+											80 Polity chapters · 19 Economy entries · original core
+											lessons and exact source checklists.
+										</p>
+									</div>
+								</div>
+								<button className="primary" onClick={() => go("Syllabus")}>
+									Open Polity & Economy
+									<ArrowRight size={16} />
+								</button>
+							</section>
 							<div className="tabs">
 								{[
 									"All",
@@ -858,7 +906,8 @@ function App() {
 									<div className="notice">
 										<BookOpen size={18} />
 										<span>
-											Starter library · {data.topics.length} introductory
+											Starter library ·{" "}
+											{data.topics.filter((t) => !t.packId).length} introductory
 											lessons. Expand your library with your own verified study
 											material.
 										</span>
@@ -866,9 +915,10 @@ function App() {
 									{cards(
 										data.topics.filter(
 											(t) =>
-												filter !== "Mains" ||
-												t.subject === "Ethics" ||
-												t.subject === "Polity",
+												!t.packId &&
+												(filter !== "Mains" ||
+													t.subject === "Ethics" ||
+													t.subject === "Polity"),
 										),
 									)}
 								</>
@@ -1218,7 +1268,7 @@ function App() {
 										</button>
 									</section>
 									<div className="topic-grid">
-										{data.cards.map((c) => (
+										{data.cards.slice(0, revisionLimit).map((c) => (
 											<button
 												className="topic-card"
 												key={c.id}
@@ -1238,6 +1288,15 @@ function App() {
 											</button>
 										))}
 									</div>
+									{data.cards.length > revisionLimit && (
+										<button
+											className="secondary"
+											onClick={() => setRevisionLimit((n) => n + 24)}
+										>
+											Show 24 more flashcards (
+											{data.cards.length - revisionLimit} remaining)
+										</button>
+									)}
 								</>
 							)}
 						</>
@@ -1541,7 +1600,7 @@ function App() {
 								/>
 								<Stat
 									icon={BookOpen}
-									label="Starter syllabus"
+									label="Loaded lesson progress"
 									value={`${Math.round((complete / data.topics.length) * 100)}%`}
 									sub={`${complete} / ${data.topics.length} loaded topics complete`}
 								/>
@@ -1728,83 +1787,39 @@ function App() {
 					{page === "Syllabus" && (
 						<>
 							{header(
-								"SEE THE BIG PICTURE",
-								"Your syllabus, mapped.",
-								"Track loaded lessons and explore the complete exam-stage framework.",
+								"YOUR MATERIAL. YOUR LEARNING MAP.",
+								"Polity & Economy syllabus",
+								"An exact source map, original core lessons, and honest coverage tracking.",
 							)}
-							<div className="notice">
-								The framework below is a study organizer, not a verbatim
-								official syllabus. Check the UPSC notification for the
-								applicable examination year.
-							</div>
-							<div className="tabs">
-								{["All", ...Object.keys(syllabus)].map((x) => (
-									<button
-										className={filter === x ? "selected" : ""}
-										key={x}
-										onClick={() => setFilter(x)}
-									>
-										{x}
-									</button>
-								))}
-							</div>
-							{Object.entries(syllabus)
-								.filter(([s]) => filter === "All" || s === filter)
-								.map(([s, items]) => (
-									<section className="panel roomy" key={s}>
-										<h2>{s}</h2>
-										{items.map((item) => (
-											<div className="syllabus-item" key={item}>
-												<h3>{item}</h3>
-												{data.topics
-													.filter((t) => t.subject === item)
-													.map((t) => (
-														<div className="list-link" key={t.id}>
-															<button
-																className="text-button"
-																onClick={() => openTopic(t)}
-															>
-																{t.title}
-															</button>
-															<select
-																aria-label={t.title + " status"}
-																value={t.status}
-																onChange={(e) =>
-																	save("topics", {
-																		...t,
-																		status: e.target.value,
-																	})
-																}
-															>
-																{[
-																	"Not started",
-																	"Learning",
-																	"Completed",
-																	"Revised",
-																	"Mastered",
-																].map((s) => (
-																	<option key={s}>{s}</option>
-																))}
-															</select>
-														</div>
-													))}
-												{!data.topics.some((t) => t.subject === item) && (
-													<p className="small-text muted">
-														Framework category · add lessons through content
-														import
-													</p>
-												)}
-											</div>
-										))}
+							<Curriculum
+								data={data}
+								save={save}
+								onOpen={openTopic}
+								onNote={linkedNote}
+							/>
+							<details className="panel roomy">
+								<summary>
+									Other UPSC stages · broad preparation framework
+								</summary>
+								<p>This organizer is not a verbatim official UPSC syllabus.</p>
+								{Object.entries(syllabus).map(([stage, items]) => (
+									<section key={stage}>
+										<h2>{stage}</h2>
+										<ul>
+											{items.map((i) => (
+												<li key={i}>{i}</li>
+											))}
+										</ul>
 									</section>
 								))}
-							<a
-								href="https://upsc.gov.in/examinations"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Official UPSC examination notices ↗
-							</a>
+								<a
+									href="https://upsc.gov.in/examinations"
+									target="_blank"
+									rel="noreferrer"
+								>
+									Check official examination notices ↗
+								</a>
+							</details>
 						</>
 					)}
 					{page === "Profile" && (
@@ -1986,6 +2001,8 @@ function App() {
 															}
 														});
 														refresh();
+														await installCurriculum(db);
+														await refresh();
 														setToast("Backup restored");
 													} catch (err) {
 														setToast("Restore failed: " + err.message);
@@ -2077,6 +2094,10 @@ function App() {
 						</button>
 						{modal.type === "topic" && (
 							<Topic
+								key={modal.topic.id}
+								data={data}
+								onNote={linkedNote}
+								onRelated={openTopic}
 								topic={data.topics.find((t) => t.id === modal.topic.id)}
 								save={save}
 								bookmark={bookmark}
@@ -2104,7 +2125,9 @@ function App() {
 									setModal({
 										type: "write",
 										kind: "Mains answer",
-										prompt: `Discuss the importance of ${modal.topic.title} with suitable examples. (150 words)`,
+										prompt:
+											modal.topic.mains ||
+											`Discuss the importance of ${modal.topic.title} with suitable examples. (150 words)`,
 									})
 								}
 							/>
@@ -2211,6 +2234,9 @@ function Stat({ icon: I, label, value, sub, progress }) {
 	);
 }
 function Topic({
+	data,
+	onNote,
+	onRelated,
 	topic: t,
 	save,
 	bookmark,
@@ -2221,6 +2247,63 @@ function Topic({
 }) {
 	const hi = lessonHindi[t.id];
 	const [level, setLevel] = useState("Exam-ready");
+	if (t.packId)
+		return (
+			<div className="topic-detail">
+				<span className="eyebrow">
+					{t.subject} · CHAPTER {t.number} · {t.section}
+				</span>
+				<h1>{t.title}</h1>
+				<h3 className="hindi">{t.hindi}</h3>
+				<div className="button-row">
+					<span className="badge">ORIGINAL CORE LESSON</span>
+					<button
+						className="icon-btn"
+						title="Bookmark lesson"
+						onClick={() => bookmark(t.id, "topic")}
+					>
+						<Bookmark size={20} fill={bookmarked ? "currentColor" : "none"} />
+					</button>
+					<select
+						aria-label="Chapter learning status"
+						value={t.status}
+						onChange={(e) => save("topics", { ...t, status: e.target.value })}
+					>
+						{[
+							"Not started",
+							"Learning",
+							"Completed",
+							"Revised",
+							"Mastered",
+						].map((x) => (
+							<option key={x}>{x}</option>
+						))}
+					</select>
+				</div>
+				<ExpandedLesson
+					topic={t}
+					data={data}
+					save={save}
+					onNote={onNote}
+					onRelated={onRelated}
+				/>
+				<h2>Practice → Revise → Write</h2>
+				<div className="button-row">
+					<button className="primary" onClick={practice}>
+						Practice topic MCQs
+						<ArrowRight size={16} />
+					</button>
+					<button className="secondary" onClick={revise}>
+						Recall with flashcards
+					</button>
+					<button className="secondary" onClick={write}>
+						Write an answer
+					</button>
+				</div>
+				<p className="source-note">{t.source}</p>
+			</div>
+		);
+
 	return (
 		<div className="topic-detail">
 			<span className="eyebrow">{t.subject} / STARTER LESSON</span>
@@ -2413,7 +2496,10 @@ function Quiz({ questions: qs, mode, refresh, bookmark, close }) {
 		return (
 			<div className="roomy">
 				<h2>No questions available</h2>
-				<p>Import questions for this subject to begin.</p>
+				<p>
+					This chapter’s question expansion is pending. Use its core lesson,
+					flashcard and Mains prompt, or import a verified question pack.
+				</p>
 			</div>
 		);
 	if (result)
@@ -2999,7 +3085,12 @@ function GlobalSearch({ data, open, quiz, note }) {
 	const results = [
 		...data.topics.map((t) => ({
 			label: t.title + " " + t.hindi,
-			body: t.intro,
+			body: [
+				t.intro,
+				...(t.facts || []),
+				...(t.subtopics || []).map((x) => x.title),
+				...(t.editorialOutline || []),
+			].join(" "),
 			type: "Topic",
 			click: () => open(t),
 		})),

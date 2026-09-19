@@ -1,3 +1,4 @@
+import { installCurriculum } from "./content/pack.js";
 import Dexie from "dexie";
 export const db = new Dexie("abhyas-v1");
 db.version(1).stores({
@@ -365,4 +366,5 @@ export async function init() {
 			]);
 		});
 	}
+	await installCurriculum(db);
 }
