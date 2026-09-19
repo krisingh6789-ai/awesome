@@ -12,7 +12,8 @@
 		"build:pages": "node scripts/build-pages.mjs",
 		"prebuild": "node scripts/compile-curriculum.mjs",
 		"prebuild:offline": "node scripts/compile-curriculum.mjs",
-		"test:curriculum": "node tests/curriculum.mjs"
+		"test:curriculum": "node tests/curriculum.mjs",
+		"test:textbook": "node tests/textbook.mjs"
 	},
 	"dependencies": {
 		"@fontsource-variable/dm-sans": "^5.3.0",

@@ -1,3 +1,4 @@
+import { researchHTML, bookHTML } from "../src/content/textbook.js";
 import { build } from "esbuild";
 import fs from "node:fs/promises";
 import { topics, questions } from "../src/data.js";
@@ -38,7 +39,7 @@ const escape = (text) =>
 const library = [...topics, ...packTopics]
 	.map(
 		(t) =>
-			`<section class="panel roomy"><span class="badge">${escape(t.subject)} · ${t.packId ? "ORIGINAL CORE LESSON · SOURCE REVIEW PENDING" : "STARTER CONTENT"}</span><h2>${escape(t.title)} · ${escape(t.hindi)}</h2><p>${escape(t.intro)}</p><p class="hindi-reading">${escape(lessonHindi[t.id]?.intro || "")}</p><ul>${t.facts.map((f, i) => `<li>${escape(f)}<p class="hindi-reading">${escape(lessonHindi[t.id]?.facts[i] || "")}</p></li>`).join("")}</ul>${t.subtopics?.length ? `<details><summary>Printed source checklist · book pp. ${escape(t.pageRange)}</summary><ul>${t.subtopics.map((s) => `<li>${escape(s.title)} — ${escape(s.page)} · full expansion pending</li>`).join("")}</ul></details>` : ""}${deepDives[t.id] ? `<details><summary>Expanded guide: ${escape(deepDives[t.id].title)}</summary>${deepDives[t.id].paragraphs.map((p) => `<p>${escape(p)}</p>`).join("")}<p><b>Application:</b> ${escape(deepDives[t.id].caseStudy)}</p></details>` : ""}${t.trap ? `<p><b>Exam trap:</b> ${escape(t.trap)}</p><p><b>Mains prompt:</b> ${escape(t.mains)}</p>` : ""}${[
+			`<section class="panel roomy"><span class="badge">${escape(t.subject)} · ${t.packId ? "ORIGINAL CORE LESSON · SOURCE REVIEW PENDING" : "STARTER CONTENT"}</span><h2>${escape(t.title)} · ${escape(t.hindi)}</h2><p>${escape(t.intro)}</p><p class="hindi-reading">${escape(lessonHindi[t.id]?.intro || "")}</p><ul>${t.facts.map((f, i) => `<li>${escape(f)}<p class="hindi-reading">${escape(lessonHindi[t.id]?.facts[i] || "")}</p></li>`).join("")}</ul>${t.subtopics?.length ? `<details><summary>Printed source checklist · book pp. ${escape(t.pageRange)}</summary><ul>${t.subtopics.map((s) => `<li>${escape(s.title)} — ${escape(s.page)} · full expansion pending</li>`).join("")}</ul></details>` : ""}${deepDives[t.id] ? `<details><summary>Expanded guide: ${escape(deepDives[t.id].title)}</summary>${deepDives[t.id].paragraphs.map((p) => `<p>${escape(p)}</p>`).join("")}<p><b>Application:</b> ${escape(deepDives[t.id].caseStudy)}</p></details>` : ""}${researchHTML(t.id)}${t.trap ? `<p><b>Exam trap:</b> ${escape(t.trap)}</p><p><b>Mains prompt:</b> ${escape(t.mains)}</p>` : ""}${[
 				...questions,
 				...packQuestions,
 			]
@@ -63,3 +64,6 @@ await fs.writeFile("Abhyas-Offline.html", html);
 console.log(
 	`Created Abhyas-Offline.html (${(Buffer.byteLength(html) / 1024 / 1024).toFixed(2)} MB). Code, starter lessons and fonts are embedded. No server or network is required for core use.`,
 );
+
+for (const subject of ["Polity", "Economy"])
+	await fs.writeFile(`Abhyas-${subject}-Reading-Book.html`, bookHTML(subject));

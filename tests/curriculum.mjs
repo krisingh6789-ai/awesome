@@ -75,16 +75,17 @@ try {
 		.getByRole("button", { name: "Study", exact: true })
 		.click();
 	await page.getByRole("button", { name: "Open Polity & Economy" }).click();
+	await page
+		.getByRole("button", { name: "Coverage & resources", exact: true })
+		.click();
 	assert.equal(await page.locator(".curriculum-card").count(), 12);
 	await page.getByLabel("Search curriculum").fill("Fundamental Rights");
-	const rights = page
-		.locator(".curriculum-card")
-		.filter({
-			has: page.getByRole("heading", {
-				name: "Fundamental Rights",
-				exact: true,
-			}),
-		});
+	const rights = page.locator(".curriculum-card").filter({
+		has: page.getByRole("heading", {
+			name: "Fundamental Rights",
+			exact: true,
+		}),
+	});
 	await rights.getByRole("button", { name: "Read lesson" }).click();
 	await page
 		.getByRole("button", { name: "Source checklist", exact: true })
@@ -152,7 +153,10 @@ try {
 		});
 		await new Promise((ok, no) => {
 			const tx = db.transaction(["settings", "topics", "cards"], "readwrite");
-			tx.objectStore("settings").delete("pack:polity-economy");
+			tx.objectStore("settings").put({
+				id: "pack:polity-economy",
+				revision: 1,
+			});
 			const t = tx.objectStore("topics").get("pe-p07");
 			t.onsuccess = () =>
 				tx.objectStore("topics").put({ ...t.result, status: "Revised" });
@@ -191,11 +195,13 @@ try {
 			get("cards", "pe-card-pe-p07"),
 			get("settings", "coverage:pe-p07"),
 			get("notes"),
+			get("settings", "pack:polity-economy"),
 		]);
 		db.close();
 		return values;
 	});
 	assert.equal(state[0].length, 105);
+	assert.equal(state[4].revision, 2);
 	assert.equal(state[0].find((t) => t.id === "pe-p07").status, "Revised");
 	assert.equal(state[1].step, 3);
 	assert.equal(state[1].due, 2000000000000);
@@ -211,6 +217,9 @@ try {
 	await page
 		.locator(".sidebar")
 		.getByRole("button", { name: "Syllabus tracker" })
+		.click();
+	await page
+		.getByRole("button", { name: "Coverage & resources", exact: true })
 		.click();
 	await page.getByRole("button", { name: "Source & appendices" }).click();
 	assert.equal(await page.locator(".supplementary-item").count(), 26);

@@ -1,0 +1,39 @@
+ABHYAS — POLITY & ECONOMY READING REVISION
+19 September 2026
+
+1. Extract this ZIP into a folder on your phone.
+2. For the interactive app, open Abhyas-Offline.html in a browser.
+3. Choose Study → Open Polity & Economy.
+4. Choose Polity or Economy, open a part, and select a chapter.
+   “Read this entire part” combines its chapters into one reading screen.
+5. Practice & notes opens the study tools separately from reading.
+
+JUST WANT TO READ?
+Open Abhyas-Polity-Reading-Book.html or
+Abhyas-Economy-Reading-Book.html. They are standalone read-only books,
+need no JavaScript or network, and include linked contents and sources.
+To make a PDF, use your browser's Print → Save as PDF if supported.
+External source links require internet. No arbitrary page limit is applied.
+
+WHAT IS INCLUDED?
+80 Polity chapters + 19 Economy entries, retaining every mapped chapter.
+97 original core lessons; 59 new source-informed sections in 10 chapters;
+8 earlier advanced guides; Hindi titles and selected Hindi recaps.
+There are 75 original/sample MCQs across the full starter app, not official PYQs.
+The book's own practice sets and answers were not supplied or invented.
+
+COVERAGE AND SOURCES
+Read CONTENT_COVERAGE.md for the exact map and RESEARCH_NOTES.md for
+consulted publications. Chapter mapping is not complete textbook-level
+teaching. Exhaustive subheading coverage, full Hindi translation and
+independent expert review are still pending. Original AI-written notes,
+not reproductions of the photographed textbooks.
+
+YOUR SAVED WORK
+Export a backup from the OLD app before replacing it. Import it into the
+new app if needed. Use the same browser/profile and location where possible.
+Progress and notes require browser storage; read-only books do not save them.
+This is HTML, not an APK. Android file opening and storage restrictions vary;
+physical Android use has not been verified. If a file viewer blocks scripts,
+use a browser or read the separate subject books. No personal files are in
+this public download. Online AI still needs your configured backend.

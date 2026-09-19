@@ -1,3 +1,7 @@
+import {
+	researchedLessons,
+	researchSources,
+} from "../src/content/researched-lessons.js";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 const read = async (name) =>
@@ -134,7 +138,7 @@ const supplementary = JSON.parse(
 }));
 const result = {
 	id: "polity-economy-v1",
-	revision: 1,
+	revision: 2,
 	mappedOn: "2026-09-19",
 	title: "Your Polity & Economy curriculum",
 	chapters,
@@ -159,7 +163,7 @@ const report = [
 	"",
 	`Mapped ${chapters.length} numbered units: 80 Polity chapters and 19 Economy entries.`,
 	`${chapters.reduce((a, c) => a + c.subtopics.length, 0)} printed Polity subheadings/reference lines; ${supplementary.length} supplementary/front-matter entries.`,
-	`${chapters.filter((c) => !c.resourceOnly).length} original core lessons; all detailed subtopic expansions and primary-source reviews remain pending.`,
+	`${chapters.filter((c) => !c.resourceOnly).length} original core lessons; 10 chapters have 59 source-informed expanded sections. Exhaustive subheading treatment and independent review remain pending.`,
 	...result.notes.map((n) => `- ${n}`),
 	"",
 ];
@@ -169,6 +173,18 @@ for (const c of chapters) {
 		`Source: contents ${c.toc}; chapter pages ${c.pageRange}.`,
 		`Coverage: ${c.coverage}.`,
 	);
+	if (researchedLessons[c.id]) {
+		report.push(
+			"Source-informed expansion (original teaching; independent review pending):",
+			...researchedLessons[c.id].sections.map(
+				(s) => `- ${s.title} — ${s.basis}`,
+			),
+			...researchedLessons[c.id].sources.map(
+				(id) =>
+					`- Consulted 2026-09-19: [${researchSources[id].name}](${researchSources[id].url}) — ${researchSources[id].edition}`,
+			),
+		);
+	}
 	for (const s of c.subtopics)
 		report.push(`- [ ] ${s.title} — ${s.page} [${s.type}; ${s.contentStatus}]`);
 	for (const s of c.editorialOutline || [])

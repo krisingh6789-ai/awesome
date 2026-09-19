@@ -249,3 +249,49 @@ No schema reset is performed. The pack revision marker is `settings['pack:polity
 `tests/curriculum.mjs` verifies all numbered units, source-line counts, reference entries, lesson and question integrity, pagination, checklist persistence, linked notes and Mains prompts, budget question checking, upgrade preservation of progress/review scheduling, offline reload and mobile overflow. Root-app workflows, binary-file backup/restore, single-file offline reading fallback and `/awesome/` deployment-path tests are also rerun for this release.
 
 The portable HTML embeds the new lessons and includes them in the script-disabled reading library. It remains an HTML file, not an Android APK. Local-file execution/storage restrictions and the GitHub Pages enablement requirement still apply.
+
+## Textbook reading revision (19 September 2026, pack revision 2)
+
+The **default** Polity–Economy screen is now a quiet reading desk, not the earlier dashboard/card grid. Choose **Subject → Part → Chapter**, or **Read this entire part**. All 80 Polity chapters remain in their 11 photographed parts; the 19 Economy entries remain in photographed order within six clearly labelled editorial groups. The source register and previous detailed tracking interface remain under **Coverage & resources**.
+
+Reading includes adjustable text size, a collapsible chapter contents list, previous/next chapters, full-text search (including the new explanations), and a saved last-opened chapter per subject. `settings['reader:Polity']` and `settings['reader:Economy']` store chapter IDs, not precise scroll positions. Text-size selection lasts for the current reading-desk session. Practice, notes, flashcards, bookmarks and writing remain accessible through **Practice & notes**; they do not interrupt the reading text. Marking a chapter studied remains a learner action, not editorial certification.
+
+### Newly researched teaching
+
+`src/content/researched-lessons.js` contains **59 original explanatory sections across 10 chapters**, approximately **7,852 new English words** in the explanatory paragraphs, plus Hindi recaps and section-level source-basis labels. The additions cover Fundamental Rights, Directive Principles, Federal System, Centre–State Relations, Parliament, Parliamentary Committees, National Income Accounting, Money and Banking, Government Budgeting and International Economics. Seven consulted publications from NCERT, RBI, the Union Budget, WTO and IMF are recorded with URLs, editions/dates and scope in **RESEARCH_NOTES.md** and the readers.
+
+This is **source-informed AI-written teaching**, not independent expert verification. Older core lessons and eight earlier advanced guides retain their review-pending labels. Not every printed subheading has exhaustive standalone treatment, and full Hindi translation is not complete. The 2026–27 budget example explicitly uses Budget Estimates; the cited RBI inflation-target period is dated. Current policy rates, index rankings and GDP base-year claims are not invented. Some pedagogical sources simplify constitutional law or retain historical examples: legal qualifications require the actual applicable provisions/judgments, and the old Planning Commission account is identified as historical.
+
+### Reading files and reproducible packaging
+
+`npm run build:offline` creates:
+
+- **Abhyas-Offline.html** — interactive portable app, with the expansions also present in storage-failure and JavaScript-disabled fallbacks.
+- **Abhyas-Polity-Reading-Book.html** — continuous, read-only subject book including all 80 chapters and available teaching.
+- **Abhyas-Economy-Reading-Book.html** — all 19 entries, with the two missing source resources explicitly labelled.
+
+The app's **Download reading book** buttons generate these subject books without a network request. The books need no JavaScript, use device fonts, have linked contents and print styling, and can be converted through the browser's **Print → Save as PDF**. No page cap is imposed; layout, type size and paper size determine the page count. Word totals count available teaching, examples and recall material, not a claim of coverage completeness. The books are not copies of the photographed textbooks and do not include personal notes/progress. External references require internet.
+
+To update the release archive (requires Python 3 in addition to Node):
+
+```sh
+npm run build:offline
+python3 - <<'PY'
+from zipfile import ZipFile, ZIP_DEFLATED
+files = ['Abhyas-Offline.html', 'Abhyas-Polity-Reading-Book.html',
+         'Abhyas-Economy-Reading-Book.html', 'CONTENT_COVERAGE.md',
+         'RESEARCH_NOTES.md', 'START-HERE.txt']
+with ZipFile('Abhyas-Offline-Android.zip', 'w', ZIP_DEFLATED) as archive:
+    for file in files:
+        archive.write(file)
+PY
+npm run build:pages
+node tests/pages.mjs
+npm run build
+npm test
+npm run test:offline
+npm run test:curriculum
+npm run test:textbook
+```
+
+The new textbook test verifies hierarchy/order, all 59 section IDs and source references, search inside explanations, whole-part reading, font sizing, persisted status and chapter resume, study-tool access, HTML export, service-worker offline reload, no-JavaScript reading and mobile/print layout. Existing workflow and preservation tests remain in place. These are desktop Chromium tests at phone-sized viewports, **not physical Android verification**. Export a backup before replacing the old app file; changing file location/browser/origin can change access to existing device storage.

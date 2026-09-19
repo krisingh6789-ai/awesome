@@ -2,7 +2,7 @@
 
 Mapped 99 numbered units: 80 Polity chapters and 19 Economy entries.
 515 printed Polity subheadings/reference lines; 26 supplementary/front-matter entries.
-97 original core lessons; all detailed subtopic expansions and primary-source reviews remain pending.
+97 original core lessons; 10 chapters have 59 source-informed expanded sections. Exhaustive subheading treatment and independent review remain pending.
 - Contents pages are a user study outline, not the official UPSC syllabus.
 - Handwritten ticks, reading counts, article annotations and marginal notes have not been converted into progress or verified facts.
 - Economy page 188 is not allocated in the printed ranges visible between Agriculture and Industry; this gap is retained, not filled by inference.
@@ -73,6 +73,20 @@ Coverage: Core lesson available; detailed subtopic expansion pending.
 ## Polity 7. Fundamental Rights
 Source: contents xx; chapter pages 7.1–7.31.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Start with the purpose of a right — NCERT: The importance of rights; Bill of Rights
+- 2. A four-question method for any rights problem — NCERT: Fundamental Rights in the Indian Constitution; Right to Constitutional Remedies
+- 3. Equality does not always mean identical treatment — NCERT: Right to Equality
+- 4. Freedom: read the guarantee and its limits together — NCERT: Right to Freedom; Other freedoms
+- 5. Life, liberty and the position of an accused person — NCERT: Right to life and personal liberty; Rights of accused
+- 6. Exploitation: constitutional protection also matters outside government offices — NCERT: Right against Exploitation; The importance of rights
+- 7. Religion: conscience, practice and equal citizenship — NCERT: Right to Freedom of Religion; Freedom of faith and worship; Equality of all religions
+- 8. Culture and education: preserving diversity without abandoning equality — NCERT: Cultural and Educational Rights
+- 9. Remedies: a written promise needs an enforcement route — NCERT: Right to Constitutional Remedies
+- 10. Understand the five writs by the problem they address — NCERT: Right to Constitutional Remedies; writ descriptions (introductory basis, with legal distinctions requiring case-law study)
+- 11. Property, duties and rights outside Part III — NCERT: Right to Property; Fundamental Duties of citizens
+- 12. Evaluate the system, not just the list — NCERT: The importance of rights; Conclusion
+- Consulted 2026-09-19: [NCERT · Rights in the Indian Constitution](https://ncert.nic.in/textbook/pdf/keps202.pdf) — Indian Constitution at Work, chapter 2, reprint 2026–27
 - [ ] Features of Fundamental Rights — 7.1 [syllabus; Detailed treatment pending]
 - [ ] Definition of State — 7.2 [syllabus; Detailed treatment pending]
 - [ ] Laws Inconsistent with Fundamental Rights — 7.3 [syllabus; Detailed treatment pending]
@@ -96,6 +110,12 @@ Coverage: Core lesson available; detailed subtopic expansion pending.
 ## Polity 8. Directive Principles of State Policy
 Source: contents xx–xxi; chapter pages 8.1–8.11.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Why a Constitution contains policy directions — NCERT: Directive Principles of State Policy
+- 2. Read goals, policy directions and implementation separately — NCERT: What do the Directive Principles contain?
+- 3. Rights and directives: avoid a false either-or — NCERT: Relationship between Fundamental Rights and Directive Principles
+- 4. Build an evaluative Mains answer — NCERT: Directive Principles; original application
+- Consulted 2026-09-19: [NCERT · Rights in the Indian Constitution](https://ncert.nic.in/textbook/pdf/keps202.pdf) — Indian Constitution at Work, chapter 2, reprint 2026–27
 - [ ] Features of the Directive Principles — 8.1 [syllabus; Detailed treatment pending]
 - [ ] Classification of the Directive Principles — 8.2 [syllabus; Detailed treatment pending]
 - [ ] New Directive Principles — 8.3 [syllabus; Detailed treatment pending]
@@ -147,6 +167,12 @@ Coverage: Core lesson available; detailed subtopic expansion pending.
 ## Polity 13. Federal System
 Source: contents xxi; chapter pages 13.1–13.7.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Federalism shares power, not merely administrative work — NCERT: What is Federalism?
+- 2. The lists are a map of responsibility — NCERT: Federalism in the Indian Constitution; Division of Powers
+- 3. A strong Union and meaningful states can coexist — NCERT: Federalism with a Strong Central Government
+- 4. Trust is part of how institutions work — NCERT: What is Federalism?; Conflicts in India's Federal System
+- Consulted 2026-09-19: [NCERT · Federalism](https://ncert.nic.in/textbook/pdf/keps207.pdf) — Indian Constitution at Work, chapter 7, reprint 2026–27
 - [ ] Federal Features of the Constitution — 13.2 [syllabus; Detailed treatment pending]
 - [ ] Unitary Features of the Constitution — 13.3 [syllabus; Detailed treatment pending]
 - [ ] Critical Evaluation of the Federal System — 13.5 [syllabus; Detailed treatment pending]
@@ -155,6 +181,12 @@ Coverage: Core lesson available; detailed subtopic expansion pending.
 ## Polity 14. Centre–State Relations
 Source: contents xxi; chapter pages 14.1–14.25.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Separate legislative, administrative and financial relations — NCERT: Division of Powers; Demands for Autonomy
+- 2. Financial autonomy gives practical meaning to responsibility — NCERT: Division of Powers; Federalism with a Strong Central Government; Demands for Autonomy
+- 3. Autonomy has several meanings — NCERT: Centre-State Relations; Demands for Autonomy
+- 4. Use history without freezing the present — NCERT: historical discussion of Centre-State relations; source limitation
+- Consulted 2026-09-19: [NCERT · Federalism](https://ncert.nic.in/textbook/pdf/keps207.pdf) — Indian Constitution at Work, chapter 7, reprint 2026–27
 - [ ] Legislative Relations — 14.1 [syllabus; Detailed treatment pending]
 - [ ] Administrative Relations — 14.5 [syllabus; Detailed treatment pending]
 - [ ] Financial Relations — 14.9 [syllabus; Detailed treatment pending]
@@ -241,6 +273,16 @@ Coverage: Core lesson available; detailed subtopic expansion pending.
 ## Polity 22. Parliament
 Source: contents xxiii; chapter pages 22.1–22.46.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Parliament is more than a law factory — NCERT: Why do we need a Parliament?; What does the Parliament do?
+- 2. Why two Houses? — NCERT: Why do we need two Houses of Parliament?; Rajya Sabha; Lok Sabha
+- 3. Follow an ordinary bill from proposal to law — NCERT: How does the Parliament make laws?
+- 4. Money Bills: unequal powers, not no role at all — NCERT: How does the Parliament make laws?; Article 109 extract
+- 5. Control operates throughout the policy cycle — NCERT: How does the Parliament control the executive?; Instruments of Parliamentary Control
+- 6. Financial control is also policy control — NCERT: Financial Function; Financial control
+- 7. Privilege protects the institution's work — NCERT: How does the Parliament control the executive?; How does the Parliament regulate itself?
+- 8. Evaluate parliamentary performance with better questions — NCERT: Legislature chapter; original synthesis
+- Consulted 2026-09-19: [NCERT · Legislature](https://ncert.nic.in/textbook/pdf/keps205.pdf) — Indian Constitution at Work, chapter 5, reprint 2026–27
 - [ ] Organisation of Parliament — 22.1 [syllabus; Detailed treatment pending]
 - [ ] Composition of the Two Houses — 22.1 [syllabus; Detailed treatment pending]
 - [ ] System of Elections to Lok Sabha — 22.2 [syllabus; Detailed treatment pending]
@@ -263,6 +305,11 @@ Coverage: Core lesson available; detailed subtopic expansion pending.
 ## Polity 23. Parliamentary Committees
 Source: contents xxiii; chapter pages 23.1–23.11.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Why detailed work moves into committees — NCERT: What do the Committees of Parliament do?
+- 2. Distinguish the institution, the task and the result — NCERT: What do the Committees of Parliament do?
+- 3. A committee recommendation needs follow-through — NCERT: committee system; original application
+- Consulted 2026-09-19: [NCERT · Legislature](https://ncert.nic.in/textbook/pdf/keps205.pdf) — Indian Constitution at Work, chapter 5, reprint 2026–27
 - [ ] Meaning — 23.1 [syllabus; Detailed treatment pending]
 - [ ] Classification — 23.1 [syllabus; Detailed treatment pending]
 - [ ] Financial Committees — 23.2 [syllabus; Detailed treatment pending]
@@ -862,6 +909,13 @@ Note: This photograph supplies chapter titles and page ranges, not printed subto
 ## Economy 2. National Income Accounting
 Source: contents 1; chapter pages 26–39.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. GDP measures production during a period — IMF: Measuring GDP
+- 2. Value added prevents the same output being counted repeatedly — IMF: production approach; original worked example
+- 3. Three approaches describe the same production process — IMF: production, expenditure and income approaches
+- 4. Nominal growth and real growth answer different questions — IMF: Real GDP; original worked example
+- 5. Gross versus net, and output versus well-being — IMF: Measuring GDP; Real GDP; original analytical application
+- Consulted 2026-09-19: [IMF · Gross Domestic Product: An Economy’s All](https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/gross-domestic-product-GDP) — Tim Callen, Finance & Development, Back to Basics; consulted 19 September 2026
 - [ ] Production method [editorial study outline, not a printed subheading]
 - [ ] Income method [editorial study outline, not a printed subheading]
 - [ ] Expenditure method [editorial study outline, not a printed subheading]
@@ -900,6 +954,15 @@ Note: This photograph supplies chapter titles and page ranges, not printed subto
 ## Economy 5. Money and Banking
 Source: contents 1; chapter pages 57–139.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Start with the policy problem, not a list of abbreviations — RBI: Monetary Policy Framework
+- 2. The MPC decides the policy rate; implementation follows — RBI: Monetary Policy Committee; Implementation of Monetary Policy
+- 3. Repo, SDF and MSF: understand the corridor — RBI: Instruments of Monetary Policy
+- 4. CRR and SLR are different requirements — RBI: Cash Reserve Ratio; Statutory Liquidity Ratio
+- 5. Open-market operations are not the same as repo transactions — RBI: Open Market Operations; Repo operations
+- 6. Trace transmission before predicting the result — RBI: Monetary Policy Framework and implementation; original analytical application
+- 7. Accountability is more than observing one monthly number — RBI: inflation-target failure definition; transparency and communication
+- Consulted 2026-09-19: [RBI · Monetary Policy overview](https://www.rbi.org.in/scripts/FS_Overview.aspx?fn=2752) — Live overview consulted 19 September 2026
 - [ ] Functions of money [editorial study outline, not a printed subheading]
 - [ ] Monetary aggregates [editorial study outline, not a printed subheading]
 - [ ] Central banking [editorial study outline, not a printed subheading]
@@ -956,6 +1019,14 @@ Note: This photograph supplies chapter titles and page ranges, not printed subto
 ## Economy 9. Government Budgeting
 Source: contents 1; chapter pages 239–288.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. Read a budget as a financing plan — Budget at a Glance 2026–27: opening explanation and receipts/expenditure table
+- 2. Four deficits, four questions — Budget at a Glance 2026–27: deficit definitions
+- 3. Worked example from the 2026–27 Budget Estimates — Budget at a Glance 2026–27: BE column; all amounts in ₹ crore
+- 4. BE, RE and actuals must not be mixed — Budget at a Glance 2026–27: table column headings
+- 5. Capital expenditure is important, but classification is not a verdict — Budget at a Glance 2026–27: effective capital expenditure definition; original application
+- 6. Evaluate a deficit through context and sustainability — Budget definitions; original economic application rather than a claim from the budget table
+- Consulted 2026-09-19: [Union Budget · Budget at a Glance 2026–27](https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf) — 2026–27 Budget Estimates; overview and opening receipts/expenditure table
 - [ ] Budget receipts [editorial study outline, not a printed subheading]
 - [ ] Revenue and capital expenditure [editorial study outline, not a printed subheading]
 - [ ] Revenue deficit [editorial study outline, not a printed subheading]
@@ -997,6 +1068,14 @@ Note: This photograph supplies chapter titles and page ranges, not printed subto
 ## Economy 12. International Economics
 Source: contents 1; chapter pages 318–330.
 Coverage: Core lesson available; detailed subtopic expansion pending.
+Source-informed expansion (original teaching; independent review pending):
+- 1. MFN is a rule against arbitrary discrimination among partners — WTO: Trade without discrimination; Most-favoured-nation treatment
+- 2. National treatment asks what happens after market entry — WTO: National treatment
+- 3. Bound and applied tariffs are not synonyms — WTO: Predictability through binding and transparency
+- 4. Predictability can matter as much as today's tariff — WTO: Predictability; transparency
+- 5. Goods, services and intellectual property have different rules — WTO: principles discussion of GATT, GATS and TRIPS
+- 6. Development flexibilities and domestic adjustment — WTO: encouraging development and economic reform; original analytical application
+- Consulted 2026-09-19: [WTO · Principles of the trading system](https://www.wto.org/english/thewto_e/whatis_e/tif_e/fact2_e.htm) — Understanding the WTO; consulted 19 September 2026
 - [ ] Comparative advantage [editorial study outline, not a printed subheading]
 - [ ] Balance of payments [editorial study outline, not a printed subheading]
 - [ ] Current account [editorial study outline, not a printed subheading]

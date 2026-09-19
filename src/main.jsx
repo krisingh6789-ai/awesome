@@ -1,3 +1,5 @@
+import { researchedLessons } from "./content/researched-lessons.js";
+import { ResearchReading } from "./Textbook.jsx";
 import Curriculum, { ExpandedLesson } from "./Curriculum.jsx";
 import {
 	installCurriculum,
@@ -247,6 +249,7 @@ function App() {
 								</li>
 							))}
 						</ul>
+						<ResearchReading id={t.id} />
 						{[...starterQuestions, ...packQuestions]
 							.filter((q) => q.topic === t.id)
 							.map((q) => (
@@ -1788,8 +1791,8 @@ function App() {
 						<>
 							{header(
 								"YOUR MATERIAL. YOUR LEARNING MAP.",
-								"Polity & Economy syllabus",
-								"An exact source map, original core lessons, and honest coverage tracking.",
+								"Polity & Economy",
+								"Subject → Part → Chapter. Read at your own pace, online or offline.",
 							)}
 							<Curriculum
 								data={data}
@@ -3090,6 +3093,11 @@ function GlobalSearch({ data, open, quiz, note }) {
 				...(t.facts || []),
 				...(t.subtopics || []).map((x) => x.title),
 				...(t.editorialOutline || []),
+				...(researchedLessons[t.id]?.sections.flatMap((s) => [
+					s.title,
+					s.hindi,
+					...s.paragraphs,
+				]) || []),
 			].join(" "),
 			type: "Topic",
 			click: () => open(t),

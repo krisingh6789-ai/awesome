@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import Textbook, { ResearchReading } from "./Textbook.jsx";
 import {
 	Search,
 	BookOpen,
@@ -104,7 +105,7 @@ export function SourceChecklist({ chapter, data, save, onNote }) {
 		</div>
 	);
 }
-export default function Curriculum({ data, save, onOpen, onNote }) {
+function CurriculumTools({ data, save, onOpen, onNote }) {
 	const [subject, setSubject] = useState("Polity"),
 		[section, setSection] = useState("All"),
 		[query, setQuery] = useState(""),
@@ -176,7 +177,7 @@ export default function Curriculum({ data, save, onOpen, onNote }) {
 				<section className="stat">
 					<div className="stat-label">Original core lessons</div>
 					<strong>97</strong>
-					<p>8 expanded guides · source review pending</p>
+					<p>10 researched chapters + 8 earlier guides</p>
 				</section>
 				<section className="stat">
 					<div className="stat-label">Your completed lessons</div>
@@ -217,11 +218,11 @@ export default function Curriculum({ data, save, onOpen, onNote }) {
 						</div>
 						<h3>Coverage is not a completion claim</h3>
 						<p>
-							97 core lessons have been written; 8 contain additional worked
-							examples, comparisons and case analysis. Detailed standalone
-							treatment of every subheading, complete Hindi translations,
-							official PYQs, the book’s ten practice sets and its answer pages
-							are still pending.
+							97 core lessons have been written; 10 now include source-informed
+							expansions and 8 contain earlier worked examples, comparisons and
+							case analysis. Detailed standalone treatment of every subheading,
+							complete Hindi translations, official PYQs, the book’s ten
+							practice sets and its answer pages are still pending.
 						</p>
 						<button
 							className="secondary"
@@ -479,9 +480,10 @@ export function ExpandedLesson({ topic: t, data, save, onNote, onRelated }) {
 	return (
 		<div className="expanded-lesson">
 			<div className="notice">
-				Core lesson · original AI-generated explanation · primary-source review
-				pending. Detailed coverage of every printed subheading is not yet
-				complete. English explanations with Hindi chapter titles; full Hindi
+				Original AI-written study material. New expanded sections identify their
+				consulted sources; earlier core notes still need primary-source review.
+				Detailed coverage of every printed subheading is not yet complete.
+				English explanations with Hindi titles and selected recaps; full Hindi
 				translation pending.
 			</div>
 			<div className="tabs">
@@ -499,6 +501,7 @@ export function ExpandedLesson({ topic: t, data, save, onNote, onRelated }) {
 			</div>
 			{section === "Learn" ? (
 				<>
+					<ResearchReading id={t.id} />
 					<p className="reading-text">{t.intro}</p>
 					<h2>Understand the essential distinctions</h2>
 					{t.facts.map((f, i) => (
@@ -669,5 +672,20 @@ export function ExpandedLesson({ topic: t, data, save, onNote, onRelated }) {
 				</>
 			)}
 		</div>
+	);
+}
+
+export default function Curriculum(props) {
+	const [tools, setTools] = useState(false);
+	return tools ? (
+		<>
+			<button className="secondary" onClick={() => setTools(false)}>
+				<ChevronLeft size={16} />
+				Back to reading desk
+			</button>
+			<CurriculumTools {...props} />
+		</>
+	) : (
+		<Textbook {...props} onTools={() => setTools(true)} />
 	);
 }
